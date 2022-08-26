@@ -1,8 +1,6 @@
 import axios from "axios";
 
-type movieTypes = {
-  sort: any;
-};
+
 
 const options: any = {
     method: 'GET',

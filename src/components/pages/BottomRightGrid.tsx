@@ -5,7 +5,6 @@ import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import { getTitle6, getTitle7, getTitle8 } from "../Common/ApiFetch";
 import { FaPlayCircle } from "react-icons/fa";
-import { Button } from "@mui/material";
 import { Container } from "@mui/system";
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -17,9 +16,9 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 export default function LowerRightGridMain() {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [data1, setData1] = React.useState<any[]>([]);
-  const [data2, setData2] = React.useState<any[]>([]);
-  const [data3, setData3] = React.useState<any[]>([]);
+
   const [newdata1, setNewData1] = React.useState<any[]>([]);
   const [newdata2, setNewData2] = React.useState<any[]>([]);
   const [newdata3, setNewData3] = React.useState<any[]>([]);
@@ -35,6 +34,7 @@ export default function LowerRightGridMain() {
     getTitle8().then(function (response) {
       localStorage.setItem("newData6", JSON.stringify(response?.data));
     });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [newdata1 === undefined]);
 
   React.useEffect(() => {

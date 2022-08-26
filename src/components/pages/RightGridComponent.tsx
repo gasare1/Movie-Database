@@ -1,28 +1,20 @@
 import * as React from "react";
-import Box from "@mui/material/Box";
+
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
-import { boxAllTime, getTitle3 } from "../Common/ApiFetch";
-import { MainBackground } from "./RightGrid.style";
+
+import { getTitle3 } from "../Common/ApiFetch";
+
 import { Container } from "@mui/system";
 import RightGridBottom from "./RightGridBottom";
 import DataTable from "./Table";
 
 
-const bull = (
-  <Box
-    component="span"
-    sx={{ display: "inline-block", mx: "2px", transform: "scale(0.8)" }}
-  >
-    •
-  </Box>
-);
 
 export default function RightGridComponent() {
   const [data, setData] = React.useState<any[]>([]);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [boxData,setBoxData] = React.useState<any[]>([])
 
   React.useEffect(() => {
@@ -36,11 +28,7 @@ export default function RightGridComponent() {
     localStorage.getItem("dataRightComponent") || "{}"
   );
 
-  const handleClick = () => {
-    boxAllTime().then(function (response) {
-        setBoxData(response?.data.items)
-    })
-  }
+
  
 
   return (

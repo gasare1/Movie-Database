@@ -1,16 +1,11 @@
 import * as React from "react";
 import {
   DataGrid,
-  GridColDef,
-  GridToolbarColumnsButton,
-  GridToolbarContainer,
-  GridValueGetterParams,
 } from "@mui/x-data-grid";
 import { Button, TextField } from "@mui/material";
-import { makeStyles } from "@material-ui/core/styles";
-import SearchBar from "material-ui-search-bar";
+
 import { boxAllTime } from "../Common/ApiFetch";
-import { table } from "console";
+
 
 // const columns: GridColDef[] = [
 //   { field: "id", headerName: "ID", width: 160 },
@@ -42,13 +37,7 @@ import { table } from "console";
 //   },
 // ];
 
-const useStyles = makeStyles({
-  input: {
-    color: "#fff",
-    backgroundColor: "#fff",
-    width: "500px",
-  },
-});
+
 
 export default function DataTable(props: any) {
 
@@ -86,21 +75,9 @@ export default function DataTable(props: any) {
     },
   ]);
 
-  const requestSearch = (searchValue: string) => {
-    const searchRegex = new RegExp(`.*${searchValue}.*`, "ig");
-    const filteredRows = tableData.filter((o: any) => {
-      return Object.keys(o).some((k: any) => {
-        return searchRegex.test(o[k].toString());
-      });
-    });
-    setTableData(filteredRows);
-  };
-  console.log(searchText);
 
-  const cancelSearch = () => {
-    setSearchText("");
-    requestSearch(searchText);
-  };
+
+
 
   const handleClick = () => {
     boxAllTime().then(function (response) {
@@ -108,9 +85,7 @@ export default function DataTable(props: any) {
       console.log(tableData, "____________", response?.data.items);
     });
   };
-  const found = tableData.filter((obj) => {
-    return obj.title === `${searchText}`;
-  });
+
   const arraySearch = (array:any, keyword:any) => {
     const searchTerm = keyword.toLowerCase();
     return array.filter((value:any) => {
@@ -135,8 +110,9 @@ export default function DataTable(props: any) {
   React.useEffect(() => {
     handleOnChange()
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   },[searchText])
-  console.log(Data,"dataaaa")
+
 
   return (
     <div style={{ height: 400, width: 950, color: "white",paddingBottom:'100px' }}>

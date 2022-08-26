@@ -18,8 +18,7 @@ const Item = styled(Paper)(({ theme }) => ({
 export default function RightGridBottom() {
   const [data1, setData1] = React.useState<any[]>([]);
   const [data2, setData2] = React.useState<any[]>([]);
-  const [localStoragedata, setLocalStorageData] = React.useState<any[]>([]);
-  const [localStoragedata2, setLocalStorageData2] = React.useState<any[]>([]);
+
 
   React.useEffect(() => {
     getTitle4().then(function (response) {

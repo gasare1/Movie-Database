@@ -2,17 +2,17 @@ import * as React from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
-import Typography from "@mui/material/Typography";
+
 import { CardActionArea, Tooltip } from "@mui/material";
 import { getTitle, getTitle2 } from "../Common/ApiFetch";
-import ReactPlayer from "react-player";
+
 import { FaPlayCircle } from "react-icons/fa";
 import { TiArrowSortedUp, TiArrowSortedDown } from "react-icons/ti";
 import { options2, sortNames } from "./Pages.utils";
 
 function LeftGridComponent() {
   const [data, setData] = React.useState<any[]>([]);
-  const [localData, setLocalData] = React.useState([]);
+
   const [sortname, setSortName] = React.useState(0);
   const [selectedSort, setSelectedSort] = React.useState(sortNames[sortname]);
   const [sortedData, setSortedData] = React.useState([]);
@@ -27,7 +27,7 @@ function LeftGridComponent() {
     options2(selectedSort[0]);
   };
 
-  
+
   const handleSortDown = async () => {
     setSortName((prev: any) => (prev - 1) % 1);
     await getTitle2(options2(selectedSort)).then(function (response) {

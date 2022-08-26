@@ -1,6 +1,5 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
-import Popper from "@mui/material/Popper";
 import { Stack, TextField } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
@@ -26,7 +25,7 @@ export default function SearchbarMain(props: any) {
   console.log(clickedData);
 
   const open = Boolean(props.anchorEl);
-  const id = open ? "simple-popper" : undefined;
+ 
   const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
     ...theme.typography.body2,

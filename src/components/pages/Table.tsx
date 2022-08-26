@@ -1,11 +1,9 @@
 import * as React from "react";
-import {
-  DataGrid,
-} from "@mui/x-data-grid";
-import { Button, TextField } from "@mui/material";
+import { DataGrid } from "@mui/x-data-grid";
+import { Button, Card, TextField } from "@mui/material";
 
 import { boxAllTime } from "../Common/ApiFetch";
-
+import { Container } from "@mui/system";
 
 // const columns: GridColDef[] = [
 //   { field: "id", headerName: "ID", width: 160 },
@@ -37,10 +35,7 @@ import { boxAllTime } from "../Common/ApiFetch";
 //   },
 // ];
 
-
-
 export default function DataTable(props: any) {
-
   const [searchText, setSearchText] = React.useState("");
 
   const [tableData, setTableData] = React.useState<any[]>([]);
@@ -75,10 +70,6 @@ export default function DataTable(props: any) {
     },
   ]);
 
-
-
-
-
   const handleClick = () => {
     boxAllTime().then(function (response) {
       setTableData(response?.data.items);
@@ -86,9 +77,9 @@ export default function DataTable(props: any) {
     });
   };
 
-  const arraySearch = (array:any, keyword:any) => {
+  const arraySearch = (array: any, keyword: any) => {
     const searchTerm = keyword.toLowerCase();
-    return array.filter((value:any) => {
+    return array.filter((value: any) => {
       return (
         value.id.toLowerCase().match(new RegExp(searchTerm, "g")) ||
         value.title.toLowerCase().match(new RegExp(searchTerm, "g")) ||
@@ -97,45 +88,58 @@ export default function DataTable(props: any) {
     });
   };
   const handleOnChange = async () => {
-    
     if (searchText.length > 2) {
       let search = await arraySearch(tableData, searchText);
-      setData(search)
-      console.log(tableData)
-     
+      setData(search);
+      console.log(tableData);
     } else {
-        setTableData(tableData)
+      setTableData(tableData);
     }
-  }
+  };
   React.useEffect(() => {
-    handleOnChange()
+    handleOnChange();
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[searchText])
-
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchText]);
 
   return (
-    <div style={{ height: 400, width: 950, color: "white",paddingBottom:'100px' }}>
-
-      <div style={{ background: "gray",justifyContent:'flex-end',display:'flex' }}>
-        <TextField
-          onChange={(event) => {
-            setSearchText(event.target.value);
+    <Container>
+      
+        <div
+          style={{
+            height: 400,
+            width: "55vw",
+            color: "white",
+            paddingBottom: "100px", 
           }}
-          label="Search for Titles"
-        />
-        <Button variant="contained" onClick={handleClick}>
-          Get Data
-        </Button>
-      </div>
-      <DataGrid
-        rows={searchText ? Data : tableData}
-        columns={columns}
-        pageSize={5}
-        rowsPerPageOptions={[5]}
-        checkboxSelection
-        sx={{ color: "white", background: "gray" }}
-      />
-    </div>
+        >
+          <div
+            style={{
+              background: "gray",
+              justifyContent: "flex-end",
+              display: "flex",
+            }}
+          >
+            <TextField
+              onChange={(event) => {
+                setSearchText(event.target.value);
+              }}
+              label="Search for Titles"
+            />
+            <Button variant="contained" onClick={handleClick}>
+              Get Data
+            </Button>
+          </div>
+          <DataGrid
+            rows={searchText ? Data : tableData}
+            columns={columns}
+            pageSize={5}
+            rowsPerPageOptions={[5]}
+            checkboxSelection
+            sx={{ color: "white", background: "gray" }}
+          />
+        </div>
+    
+    </Container>
   );
 }

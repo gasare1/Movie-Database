@@ -1,35 +1,50 @@
+name: 'Amplify Deploy'
+on: [push]
 
-# Name of workflow as seen in Github actions tab
-name: dev-build-and-deploy
-# Run workflow only on push to dev branch
-on:
-  push:
-    branches:
-      - main
 jobs:
-  # To build the project
-  build-tambola:
+  test:
+    name: test amplify-cli-action
     runs-on: ubuntu-latest
-    steps:
-      - name: Checking out code
-        uses: actions/checkout@v3
-      - name: Installing Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: "16"
-      - name: Installing dependencies
-        run: yarn install
-      - name: Building project
-        run: yarn run build
-      - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: AKIA4QD6QEETDTJEIHFQ
-          aws-secret-access-key: 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
-          aws-region: us-east-1
 
-      - name: Deploy to S3 bucket
-        run: aws s3 sync ./ s3://movie-apps --delete
+    strategy:
+      matrix:
+        node-version: [10.x]
+
+    steps:
+    - uses: actions/checkout@v1
+
+    - name: use node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    - name: configure amplify
+      uses: ambientlight/amplify-cli-action@0.3.0
+      with:
+        amplify_command: configure
+        amplify_env: prod
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        AWS_REGION: us-east-1
+
+    - name: install, build and test
+      run: |
+        npm install
+        # build and test
+        # npm run build
+        # npm run test
+    
+    - name: deploy
+      uses: ambientlight/amplify-cli-action@0.3.0
+      with:
+        amplify_command: publish
+        amplify_env: prod
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        AWS_REGION: us-east-1
+    
 
 # {
 # 	"Version": "2012-10-17",

@@ -20,4 +20,4 @@ jobs:
       - name: Build React App
         run: yarn install && yarn run build
       - name: Deploy app build to S3 bucket
-        run: aws s3 cp build s3://react-apps --delete
+        run: aws s3 cp build s3://react-apps

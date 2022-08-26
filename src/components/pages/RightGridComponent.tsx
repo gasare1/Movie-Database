@@ -46,7 +46,7 @@ export default function RightGridComponent() {
   return (
     <Container>
        
-      {items1[0]?.slice(1,2).map((items: any, index: any) => (
+      {items1[0]?.slice(2,3).map((items: any, index: any) => (
         <Card
           key={index}
           sx={{

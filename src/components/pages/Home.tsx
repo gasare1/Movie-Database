@@ -60,7 +60,7 @@ export default function Home() {
               >
                 <div style={{ fontSize: "20px", fontWeight: "bolder" }}>
                   {" "}
-                  Fans Favorite
+                  Fans Favorites
                 </div>
               </div>
               <LowerRightGridMain />

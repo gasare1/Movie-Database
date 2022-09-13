@@ -4,11 +4,12 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 
 import { CardActionArea, Tooltip } from "@mui/material";
-import { getTitle, getTitle2 } from "../Common/ApiFetch";
+import { getTitle, getTitle2 } from "../../Common/ApiFetch";
 
 import { FaPlayCircle } from "react-icons/fa";
 import { TiArrowSortedUp, TiArrowSortedDown } from "react-icons/ti";
 import { options2, sortNames } from "./Pages.utils";
+
 
 function LeftGridComponent() {
   const [data, setData] = React.useState<any[]>([]);

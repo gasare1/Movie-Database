@@ -3,7 +3,7 @@ import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
-import { getTitle6, getTitle7, getTitle8 } from "../Common/ApiFetch";
+import { getTitle6, getTitle7, getTitle8 } from"../../Common/ApiFetch";
 import { FaPlayCircle } from "react-icons/fa";
 import { Container } from "@mui/system";
 
